@@ -1,9 +1,9 @@
 ### EX7 Implementation of Link Analysis using HITS Algorithm
-### DATE: 19/10/2024
+### DATE: 
 ### AIM: To implement Link Analysis using HITS Algorithm in Python.
 ### Description:
 <div align = "justify">
-The HITS (Hyperlink-Induced Topic Search) algorithm i a link analysis algorithm used to rank web pages. It identifies authority and hub pages 
+The HITS (Hyperlink-Induced Topic Search) algorithm is a link analysis algorithm used to rank web pages. It identifies authority and hub pages 
 in a network of web pages based on the structure of the links between them.
 
 ### Procedure:
@@ -72,11 +72,21 @@ adj_matrix = np.array([
 
 # Run HITS algorithm
 authority, hub = hits_algorithm(adj_matrix)
-for i in range(len(authority)):
-    print(f"Node {i}: Authority Score = {authority[i]:.4f}, Hub Score = {hub[i]:.4f}")
 
-# bar chart of authority vs hub scores
+# Rank nodes by authority scores (highest first)
+authority_ranking = np.argsort(-authority)
+hub_ranking = np.argsort(-hub)
 
+# Print authority and hub scores with rankings
+print("Authority Scores Ranking:")
+for rank, node in enumerate(authority_ranking, 1):
+    print(f"Rank {rank}: Node {node}, Score = {authority[node]:.4f}")
+
+print("\nHub Scores Ranking:")
+for rank, node in enumerate(hub_ranking, 1):
+    print(f"Rank {rank}: Node {node}, Score = {hub[node]:.4f}")
+
+# Bar chart of authority vs hub scores
 nodes = np.arange(len(authority))
 bar_width = 0.35
 plt.figure(figsize=(8, 6))
@@ -89,9 +99,11 @@ plt.xticks(nodes, [f'Node {i}' for i in nodes])
 plt.legend()
 plt.tight_layout()
 plt.show()
+
 ```
 ### Output:
-![image](https://github.com/user-attachments/assets/db4dfb96-0d24-4d1c-a58f-0f91d75c6ffd)
+![Screenshot 2024-10-22 093931](https://github.com/user-attachments/assets/f3baae98-223c-41e5-bb39-14525538fe53)
+![image](https://github.com/user-attachments/assets/f16fe9ac-0553-4a1c-966a-453c50497b38)
 
 ### Result:
-Thus, Link Analysis using HITS Algorithm in Python is successfully implemented.
+Thus Link Analysis using HITS Algorithm in Python is successfully implemented.
